@@ -5,7 +5,8 @@ const jwt    = require('jsonwebtoken');
 
 // Set up the express app
 const app = express();
-
+const port = parseInt(process.env.PORT, 10) || 8000;
+app.set('port', port);
 // Log requests to the console.
 app.use(logger('dev'));
 
@@ -23,4 +24,6 @@ app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome to the beginning of nothingness.',
 }));
 
-module.exports = app;
+app.listen(port, () => console.log(`port running at ${port}`));
+
+//module.exports = app;
